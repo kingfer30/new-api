@@ -29,6 +29,7 @@ const SystemSetting = () => {
     ServerAddress: '',
     WorkerUrl: '',
     WorkerValidKey: '',
+    HttpProxy: '',
     EpayId: '',
     EpayKey: '',
     Price: 7.3,
@@ -149,6 +150,7 @@ const SystemSetting = () => {
       name === 'ServerAddress' ||
       name === 'WorkerUrl' ||
       name === 'WorkerValidKey' ||
+      name === 'HttpProxy' ||
       name === 'EpayId' ||
       name === 'EpayKey' ||
       name === 'Price' ||
@@ -181,7 +183,8 @@ const SystemSetting = () => {
     await updateOption('WorkerUrl', WorkerUrl);
     if (inputs.WorkerValidKey !== '') {
       await updateOption('WorkerValidKey', inputs.WorkerValidKey);
-    }
+    } 
+    await updateOption('HttpProxy', inputs.HttpProxy);
   }
 
   const submitPayAddress = async () => {
@@ -355,6 +358,13 @@ const SystemSetting = () => {
               placeholder='例如：your_secret_key'
               value={inputs.WorkerValidKey}
               name='WorkerValidKey'
+              onChange={handleInputChange}
+            />
+            <Form.Input
+              label='Gemini 代理'
+              placeholder='例如: http://username:password@ip:port'
+              value={inputs.HttpProxy}
+              name='HttpProxy'
               onChange={handleInputChange}
             />
           </Form.Group>
